@@ -12,6 +12,7 @@ from utils import utils_logger
 from utils import utils_image as util
 
 
+
 def select_model(args, device):
     # Model ID is assigned according to the order of the submissions.
     # Different networks are trained with input range of either [0,1] or [0,255]. The range is determined manually.
@@ -27,10 +28,12 @@ def select_model(args, device):
         model_path = os.path.join('model_zoo', 'team00_rlfn.pth')
         model = RLFN_Prune()
         model.load_state_dict(torch.load(model_path), strict=True)
-
-    # elif model_id == 1:
-    #     from models.team[Your_Team_ID]_[Model_Name] import [Model_Name]
-    #     ...
+    elif model_id == 1:
+        from models.team33_IFADNet import IFADNet
+        name, data_range = f"{model_id:02}_IFADNet", 1.0
+        model = IFADNet(deploy=True)
+        model_path = os.path.join('model_zoo', 'team33_IFADNet.pth')
+        model.load_state_dict(torch.load(model_path)["params_ema"], strict=True)
     else:
         raise NotImplementedError(f"Model {model_id} is not implemented.")
 
@@ -281,9 +284,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("NTIRE2024-EfficientSR")
-    parser.add_argument("--data_dir", default="../", type=str)
-    parser.add_argument("--save_dir", default="../results", type=str)
-    parser.add_argument("--model_id", default=0, type=int)
+    parser.add_argument("--data_dir", default="datasets", type=str)
+    parser.add_argument("--save_dir", default="results", type=str)
+    parser.add_argument("--model_id", default=1, type=int)
     parser.add_argument("--include_test", action="store_true", help="Inference on the DIV2K test set")
     parser.add_argument("--ssim", action="store_true", help="Calculate SSIM")
 
