@@ -65,6 +65,14 @@ After downloaded all the necessary validate dataset ([DIV2K_LSDIR_valid_LR](http
 
 
 
+## About Fact Sheet
+
+All fact sheet files are in folder `Fact Sheet`.
+
+`team33_Fact_Sheet.pdf` is the compiled pdf file of our fact sheet.  `team33_Fact_Sheet.zip` is the corresponding .tex source files. 
+
+
+
 
 ## License and Acknowledgement
 This code repository is release under [MIT License](LICENSE). 
