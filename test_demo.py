@@ -28,7 +28,7 @@ def select_model(args, device):
         model_path = os.path.join('model_zoo', 'team00_rlfn.pth')
         model = RLFN_Prune()
         model.load_state_dict(torch.load(model_path), strict=True)
-    elif model_id == 1:
+    elif model_id == 33:
         from models.team33_IFADNet import IFADNet
         name, data_range = f"{model_id:02}_IFADNet", 1.0
         model = IFADNet(deploy=True)
@@ -286,7 +286,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser("NTIRE2024-EfficientSR")
     parser.add_argument("--data_dir", default="datasets", type=str)
     parser.add_argument("--save_dir", default="results", type=str)
-    parser.add_argument("--model_id", default=1, type=int)
+    parser.add_argument("--model_id", default=33, type=int)
     parser.add_argument("--include_test", action="store_true", help="Inference on the DIV2K test set")
     parser.add_argument("--ssim", action="store_true", help="Calculate SSIM")
 
